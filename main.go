@@ -112,7 +112,7 @@ func handleDepositRequest(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Deposit accepted successfully"))
 }
 
-// clientID int, amount float64
+
 func depositProcess() {
 	for _ = range queueDeposit {
 		client := <-queueDeposit
@@ -182,7 +182,7 @@ func handleWithdrawRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	if err := db.Ping(); err != nil {
 		fmt.Println("Database is not available:", err)
-		// write data to file if the database crashes
+		// записываем данные в базу если бд крашнулась
 		writeFile(tx)
 	}
 	go func() {
